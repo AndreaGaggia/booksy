@@ -1,6 +1,6 @@
 <template>
     <div class="home container">
-        <div class="columns is-centered">
+        <div class="search-form columns is-centered">
             <div class="search-form column is-8">
                 <div class="field has-addons has-addons-centered">
                     <p class="control">
@@ -36,20 +36,23 @@
                 </div>
             </div>
         </div>
+
+        <!-- lista dei libri -->
+        <BooksList :books="books" />
     </div>
 </template>
 
 <script>
+import BooksList from "../components/BooksList";
 export default {
     name: "Home",
-    components: {},
+    components: { BooksList },
     data() {
         return {
             searchBy: "all",
             searchTerm: "",
             onlyIT: true,
             books: [],
-            coverBaseURI: `http://covers.openlibrary.org/b/id/cover_i-S.jpg`,
         };
     },
     methods: {
@@ -91,12 +94,10 @@ export default {
                         this.books = books;
                     }
 
-                    console.log(this.books);
-
                     this.$refs.searchInput_control.classList.remove(
                         "is-loading"
                     );
-                    this.$refs.searchInput.value = "";
+                    this.searchTerm = "";
                     this.$refs.searchInput.blur();
                 })
                 .catch((err) => console.log(err));

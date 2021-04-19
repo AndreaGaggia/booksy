@@ -1,6 +1,6 @@
 <template>
     <div id="nav">
-        <router-link to="/">Home</router-link> |
+        <router-link to="/" class="is-size-2">Home</router-link> |
         <router-link to="/about">About</router-link>
     </div>
     <router-view />
@@ -11,6 +11,11 @@
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+#nav {
+    text-align: center;
+    padding: 30px;
 }
 
 // #nav {
