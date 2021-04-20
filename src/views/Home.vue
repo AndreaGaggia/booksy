@@ -5,7 +5,7 @@
                 <div class="field has-addons has-addons-centered">
                     <p class="control">
                         <span class="select is-info is-rounded">
-                            <select v-model="searchBy">
+                            <select v-model="searchBy" @change="books = []">
                                 <option value="title">Titolo</option>
                                 <option value="author">Autore</option>
                             </select>
@@ -37,6 +37,13 @@
             </div>
         </div>
 
+        <div v-if="books.length" class="notification is-info is-light">
+            {{ books.length }} libri trovati per "{{ countTerm }}" ({{
+                searchBy
+            }})
+            <span v-if="onlyIT">- solo libri in italiano</span>
+        </div>
+
         <!-- lista dei libri -->
         <BooksList :books="books" />
     </div>
@@ -53,6 +60,7 @@ export default {
             searchTerm: "",
             onlyIT: true,
             books: [],
+            countTerm: "",
         };
     },
     methods: {
@@ -80,6 +88,7 @@ export default {
                             year: doc.first_publish_year,
                             language: doc.language,
                             cover_i: doc.cover_i,
+                            subject: doc.subject,
                         };
                         books.push(book);
                     });
@@ -97,6 +106,7 @@ export default {
                     this.$refs.searchInput_control.classList.remove(
                         "is-loading"
                     );
+                    this.countTerm = this.searchTerm;
                     this.searchTerm = "";
                     this.$refs.searchInput.blur();
                 })

@@ -1,7 +1,7 @@
 <template>
     <div id="nav">
-        <router-link to="/" class="is-size-2">Home</router-link> |
-        <router-link to="/about">About</router-link>
+        <router-link to="/">Home</router-link> |
+        <router-link :to="{ name: 'Libreria' }">La tua libreria</router-link>
     </div>
     <router-view />
 </template>
@@ -16,6 +16,10 @@
 #nav {
     text-align: center;
     padding: 30px;
+
+    a.router-link-exact-active {
+        font-size: 48px;
+    }
 }
 
 // #nav {

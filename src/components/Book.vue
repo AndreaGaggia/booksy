@@ -6,21 +6,116 @@
             </figure>
         </div>
         <div class="card-content">
-            <div class="content">
-                <p class="has-text-weight-bold is-size-7">
+            <div class="content is-size-7">
+                <p class="has-text-weight-bold">
                     {{ book.title }}
                 </p>
-                <div class="details is-size-7">
-                    <p v-for="author in book.author" :key="author">
-                        {{ author
-                        }}<span
-                            v-if="
-                                book.author.indexOf(author) !=
-                                    book.author.length - 1
-                            "
-                            >,
-                        </span>
-                    </p>
+                <a @click="showModal">Vedi dettagli</a>
+
+                <!-- modale per dettagli e azioni -->
+                <div ref="book_modal" class="modal">
+                    <div class="modal-background"></div>
+                    <div class="modal-content is-size-6">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="content">
+                                    <div class="columns">
+                                        <div class="column">
+                                            <span>
+                                                <strong>{{
+                                                    book.title
+                                                }}</strong>
+                                            </span>
+                                            <div class="details">
+                                                <span
+                                                    >di
+                                                    <span
+                                                        class="has-text-info"
+                                                        v-for="author in book.author"
+                                                        :key="author"
+                                                        >{{ author
+                                                        }}<span
+                                                            v-if="
+                                                                book.author.indexOf(
+                                                                    author
+                                                                ) !=
+                                                                    book.author
+                                                                        .length -
+                                                                        1
+                                                            "
+                                                            >,
+                                                        </span>
+                                                    </span></span
+                                                >
+
+                                                <br />
+                                                <span
+                                                    ><em>Anno:</em>
+                                                    {{ book.year }}</span
+                                                >
+                                                <br />
+                                                <span
+                                                    ><em>Lingue: </em>
+                                                    <span
+                                                        v-for="language in book.language"
+                                                        :key="language"
+                                                    >
+                                                        {{ language
+                                                        }}<span
+                                                            v-if="
+                                                                book.language.indexOf(
+                                                                    language
+                                                                ) !=
+                                                                    book
+                                                                        .language
+                                                                        .length -
+                                                                        1
+                                                            "
+                                                            >,
+                                                        </span>
+                                                    </span></span
+                                                >
+                                                <br />
+                                                <span
+                                                    ><em>Argomenti: </em>
+                                                    <span
+                                                        v-for="subject in book.subject"
+                                                        :key="subject"
+                                                    >
+                                                        {{ subject
+                                                        }}<span
+                                                            v-if="
+                                                                book.subject.indexOf(
+                                                                    subject
+                                                                ) !=
+                                                                    book.subject
+                                                                        .length -
+                                                                        1
+                                                            "
+                                                            >,
+                                                        </span>
+                                                    </span></span
+                                                >
+                                            </div>
+                                        </div>
+                                        <div class="actions column">
+                                            <button
+                                                class="button is-info"
+                                                @click="addBook(book)"
+                                            >
+                                                Aggiungi alla tua libreria
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="modal-close is-large"
+                        aria-label="close"
+                        @click="closeModal"
+                    ></button>
                 </div>
             </div>
         </div>
@@ -38,21 +133,42 @@ export default {
 
             return "./default_book.svg";
         },
+        showModal(event) {
+            event.target.nextElementSibling.classList.add("is-active");
+        },
+        closeModal() {
+            this.$refs.book_modal.classList.remove("is-active");
+        },
+        addBook(book) {
+            //console.log(book);
+
+            fetch("http://localhost:3000/myLibrary", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(book),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    this.$router.push({ name: "Libreria" });
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        },
     },
 };
 </script>
 
 <style lang="scss" scoped>
-.details {
-    display: none;
+.card .content p {
+    height: 2.5rem;
+    overflow-y: auto;
 }
-
-.card:hover {
-    background: rgba(41, 10, 219, 0.13);
-    transition: all 0.3s ease;
-
-    &.card .details {
-        display: block;
-    }
+.actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 </style>
