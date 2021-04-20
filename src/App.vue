@@ -22,6 +22,23 @@
     }
 }
 
+// transitions
+.fade-enter-from {
+    opacity: 0;
+    transform: translateY(60px);
+}
+.fade-enter-active {
+    transition: all 1s ease;
+}
+
+.noti-enter-from {
+    opacity: 0;
+    transform: translateY(-60px);
+}
+.noti-enter-active {
+    transition: all 1s ease;
+}
+
 // #nav {
 //   padding: 30px;
 

@@ -37,15 +37,19 @@
             </div>
         </div>
 
-        <div v-if="books.length" class="notification is-info is-light">
-            {{ books.length }} libri trovati per "{{ countTerm }}" ({{
-                searchBy
-            }})
-            <span v-if="onlyIT">- solo libri in italiano</span>
-        </div>
+        <transition v-if="books.length" name="noti" appear>
+            <div v-if="books.length" class="notification is-info is-light">
+                {{ books.length }} libri trovati per "{{ countTerm }}" ({{
+                    searchBy
+                }})
+                <span v-if="onlyIT">- solo libri in italiano</span>
+            </div>
+        </transition>
 
         <!-- lista dei libri -->
-        <BooksList :books="books" />
+        <transition v-if="books.length" name="fade" appear>
+            <BooksList :books="books" />
+        </transition>
     </div>
 </template>
 

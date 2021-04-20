@@ -1,6 +1,8 @@
 <template>
     <div class="libreria container">
-        <BooksList :books="mybooks" />
+        <transition name="fade" appear>
+            <BooksList :books="mybooks" />
+        </transition>
     </div>
 </template>
 
@@ -22,4 +24,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>
