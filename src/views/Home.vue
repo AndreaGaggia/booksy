@@ -27,7 +27,7 @@
                         </a>
                     </p>
                 </div>
-                <!-- risultati in italiano -->
+                <!-- check risultati in italiano/all -->
                 <div class="field has-text-centered">
                     <label class="checkbox">
                         <input type="checkbox" v-model="onlyIT" />
@@ -37,7 +37,8 @@
             </div>
         </div>
 
-        <transition v-if="books.length" name="noti" appear>
+        <!-- notifica risultati della ricerca -->
+        <transition v-if="books.length" name="fade" appear>
             <div v-if="books.length" class="notification is-info is-light">
                 {{ books.length }} libri trovati per "{{ countTerm }}" ({{
                     searchBy
@@ -79,6 +80,7 @@ export default {
             return `http://openlibrary.org/search.json?q=${this.searchTerm}`;
         },
         getBooks() {
+            this.books = [];
             this.$refs.searchInput_control.classList.add("is-loading");
 
             fetch(this.searchURI(this.searchBy))
@@ -117,9 +119,7 @@ export default {
                 .catch((err) => console.log(err));
         },
     },
-    mounted() {
-        //console.log(this.searchBy);
-    },
+    mounted() {},
 };
 </script>
 

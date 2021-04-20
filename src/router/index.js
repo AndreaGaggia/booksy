@@ -12,6 +12,7 @@ const routes = [
         path: "/libreria",
         name: "Libreria",
         component: Libreria,
+        params: true,
     },
 ];
 

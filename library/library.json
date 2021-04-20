@@ -1,87 +1,21 @@
 {
-  "myLibrary": [
-    {
-      "title": "Opere",
-      "author": [
-        "Carmelo Bene"
-      ],
-      "year": 1995,
-      "language": [
-        "ita"
-      ],
-      "id": 1
-    },
-    {
-      "title": "Sono apparso alla Madonna",
-      "author": [
-        "Carmelo Bene"
-      ],
-      "year": 1983,
-      "language": [
-        "ita"
-      ],
-      "id": 2
-    },
-    {
-      "title": "Il rosa e il nero",
-      "author": [
-        "Carmelo Bene"
-      ],
-      "year": 1979,
-      "language": [
-        "ita"
-      ],
-      "id": 3
-    },
-    {
-      "title": "Storia linguistica dell'Italia unita",
-      "author": [
-        "Tullio De Mauro"
-      ],
-      "year": 1963,
-      "language": [
-        "ita"
-      ],
-      "subject": [
-        "Dialects",
-        "Literacy",
-        "Words",
-        "Italian language",
-        "History"
-      ],
-      "id": 4
-    },
-    {
-      "title": "Detective Montalbano",
-      "author": [
-        "Alberto Sironi",
-        "Francesco Bruni",
-        "Andrea Camilleri",
-        "Salvatore De Mola",
-        "Leonardo Marini"
-      ],
-      "year": 2018,
-      "language": [
-        "ita"
-      ],
-      "subject": [
-        "Detective and mystery plays"
-      ],
-      "id": 5
-    },
-    {
-      "title": "Billy Wilder",
-      "author": [
-        "Maurizio Grande"
-      ],
-      "year": 1978,
-      "language": [
-        "ita"
-      ],
-      "subject": [
-        "Criticism and interpretation"
-      ],
-      "id": 6
-    }
-  ]
+    "myLibrary": [
+        {
+            "title": "Eloquent JavaScript",
+            "author": ["Marijn Haverbeke"],
+            "year": 2009,
+            "language": ["eng"],
+            "cover_i": 8508178,
+            "subject": [
+                "Computer science",
+                "programming languages",
+                "JavaScript",
+                "Javascript (computer program language)",
+                "Java (computer program language)",
+                "JavaScript (Computer program language)",
+                "Accessible book"
+            ],
+            "id": 1
+        }
+    ]
 }

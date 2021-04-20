@@ -17,18 +17,20 @@
     text-align: center;
     padding: 30px;
 
-    a.router-link-exact-active {
+    a.router-link-active {
         font-size: 48px;
     }
 }
 
 // transitions
-.fade-enter-from {
+.fade-enter-from,
+.fade-leave-to {
     opacity: 0;
-    transform: translateY(60px);
+    transform: translateX(60px);
 }
-.fade-enter-active {
-    transition: all 1s ease;
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 0.5s ease;
 }
 
 .noti-enter-from {
@@ -36,6 +38,18 @@
     transform: translateY(-60px);
 }
 .noti-enter-active {
+    transition: all 1s ease;
+}
+
+.scale-enter-from {
+    opacity: 0;
+    transform: scale(0);
+}
+.scale-enter-to {
+    opacity: 1;
+    transform: scale(1);
+}
+.scale-enter-active {
     transition: all 1s ease;
 }
 

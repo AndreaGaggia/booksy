@@ -100,6 +100,7 @@
                                         </div>
                                         <div class="actions column">
                                             <button
+                                                v-if="!book.in_library"
                                                 class="button is-info"
                                                 @click="addBook(book)"
                                             >
@@ -125,6 +126,9 @@
 <script>
 export default {
     props: ["book"],
+    data() {
+        return {};
+    },
     methods: {
         getCover(book) {
             if (book.cover_i) {
@@ -141,6 +145,9 @@ export default {
         },
         addBook(book) {
             //console.log(book);
+            book.addedAt = new Date();
+            book.in_library = true;
+            console.log(book.addedAt.toLocaleString());
 
             fetch("http://localhost:3000/myLibrary", {
                 method: "POST",
@@ -150,9 +157,12 @@ export default {
                 body: JSON.stringify(book),
             })
                 .then((response) => response.json())
-                .then((data) => {
-                    this.$router.push({ name: "Libreria" });
-                })
+                .then(() =>
+                    this.$router.push({
+                        name: "Libreria",
+                        params: { book: JSON.stringify(book) },
+                    })
+                )
                 .catch((error) => {
                     console.error("Error:", error);
                 });
