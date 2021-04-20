@@ -22,54 +22,34 @@
                                     <div class="columns">
                                         <div class="column">
                                             <span>
-                                                <strong>{{
-                                                    book.title
-                                                }}</strong>
+                                                <strong>{{ book.title }}</strong>
                                             </span>
                                             <div class="details">
-                                                <span
-                                                    >di
+                                                <span>
+                                                    di
                                                     <span
                                                         class="has-text-info"
                                                         v-for="author in book.author"
                                                         :key="author"
-                                                        >{{ author
-                                                        }}<span
-                                                            v-if="
-                                                                book.author.indexOf(
-                                                                    author
-                                                                ) !=
-                                                                    book.author
-                                                                        .length -
-                                                                        1
-                                                            "
+                                                    >
+                                                        {{ author }}
+                                                        <span
+                                                            v-if="book.author.indexOf(author) != book.author.length - 1"
                                                             >,
                                                         </span>
-                                                    </span></span
-                                                >
-
+                                                    </span>
+                                                </span>
                                                 <br />
-                                                <span
-                                                    ><em>Anno:</em>
-                                                    {{ book.year }}</span
-                                                >
+                                                <span><em>Anno:</em> {{ book.year }}</span>
                                                 <br />
                                                 <span
                                                     ><em>Lingue: </em>
-                                                    <span
-                                                        v-for="language in book.language"
-                                                        :key="language"
-                                                    >
+                                                    <span v-for="language in book.language" :key="language">
                                                         {{ language
                                                         }}<span
                                                             v-if="
-                                                                book.language.indexOf(
-                                                                    language
-                                                                ) !=
-                                                                    book
-                                                                        .language
-                                                                        .length -
-                                                                        1
+                                                                book.language.indexOf(language) !=
+                                                                    book.language.length - 1
                                                             "
                                                             >,
                                                         </span>
@@ -78,19 +58,11 @@
                                                 <br />
                                                 <span
                                                     ><em>Argomenti: </em>
-                                                    <span
-                                                        v-for="subject in book.subject"
-                                                        :key="subject"
-                                                    >
+                                                    <span v-for="subject in book.subject" :key="subject">
                                                         {{ subject
                                                         }}<span
                                                             v-if="
-                                                                book.subject.indexOf(
-                                                                    subject
-                                                                ) !=
-                                                                    book.subject
-                                                                        .length -
-                                                                        1
+                                                                book.subject.indexOf(subject) != book.subject.length - 1
                                                             "
                                                             >,
                                                         </span>
@@ -99,11 +71,13 @@
                                             </div>
                                         </div>
                                         <div class="actions column">
-                                            <button
-                                                v-if="!book.in_library"
-                                                class="button is-info"
-                                                @click="addBook(book)"
-                                            >
+                                            <div v-if="book.in_library">
+                                                <p>
+                                                    Aggiunto il {{ new Date(book.addedAt).toLocaleDateString() }} alle
+                                                    ore {{ new Date(book.addedAt).toLocaleTimeString() }}
+                                                </p>
+                                            </div>
+                                            <button v-else class="button is-info" @click="addBook(book)">
                                                 Aggiungi alla tua libreria
                                             </button>
                                         </div>
@@ -112,11 +86,7 @@
                             </div>
                         </div>
                     </div>
-                    <button
-                        class="modal-close is-large"
-                        aria-label="close"
-                        @click="closeModal"
-                    ></button>
+                    <button class="modal-close is-large" aria-label="close" @click="closeModal"></button>
                 </div>
             </div>
         </div>
@@ -144,10 +114,9 @@ export default {
             this.$refs.book_modal.classList.remove("is-active");
         },
         addBook(book) {
-            //console.log(book);
             book.addedAt = new Date();
             book.in_library = true;
-            console.log(book.addedAt.toLocaleString());
+            //console.log(book.addedAt.toLocaleString());
 
             fetch("http://localhost:3000/myLibrary", {
                 method: "POST",
@@ -156,14 +125,14 @@ export default {
                 },
                 body: JSON.stringify(book),
             })
-                .then((response) => response.json())
+                .then(response => response.json())
                 .then(() =>
                     this.$router.push({
                         name: "Libreria",
                         params: { book: JSON.stringify(book) },
                     })
                 )
-                .catch((error) => {
+                .catch(error => {
                     console.error("Error:", error);
                 });
         },

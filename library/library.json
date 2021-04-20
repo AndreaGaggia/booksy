@@ -1,21 +1,46 @@
 {
-    "myLibrary": [
-        {
-            "title": "Eloquent JavaScript",
-            "author": ["Marijn Haverbeke"],
-            "year": 2009,
-            "language": ["eng"],
-            "cover_i": 8508178,
-            "subject": [
-                "Computer science",
-                "programming languages",
-                "JavaScript",
-                "Javascript (computer program language)",
-                "Java (computer program language)",
-                "JavaScript (Computer program language)",
-                "Accessible book"
-            ],
-            "id": 1
-        }
-    ]
+  "myLibrary": [
+    {
+      "title": "Eloquent JavaScript",
+      "author": [
+        "Marijn Haverbeke"
+      ],
+      "year": 2009,
+      "language": [
+        "eng"
+      ],
+      "cover_i": 8508178,
+      "subject": [
+        "Computer science",
+        "programming languages",
+        "JavaScript",
+        "Javascript (computer program language)",
+        "Java (computer program language)",
+        "JavaScript (Computer program language)",
+        "Accessible book"
+      ],
+      "addedAt": "2021-04-20T13:02:53.256Z",
+      "in_library": true,
+      "id": 1
+    },
+    {
+      "title": "Clean Code",
+      "author": [
+        "Robert C. Martin"
+      ],
+      "year": 2008,
+      "cover_i": 8065615,
+      "subject": [
+        "Agile software development",
+        "Reliability",
+        "Computer software",
+        "Computer software, development",
+        "Coding theory",
+        "Accessible book"
+      ],
+      "addedAt": "2021-04-20T13:17:10.907Z",
+      "in_library": true,
+      "id": 2
+    }
+  ]
 }
